@@ -22,7 +22,7 @@ app.post('/sessions', async function (req, res, next) {
     const jsonLdObject = await storeToJsonLd(
       loginDetailsStore,
       con.LoginResponseContext,
-      con.LoginResponseFrame
+      con.LoginResponseFrame,
     );
     res
       .status(201)
@@ -56,7 +56,7 @@ app.use(async (err, req, res, next) => {
   const errorJsonld = await storeToJsonLd(
     errorStore,
     con.ErrorResponseContext,
-    con.ErrorResponseFrame
+    con.ErrorResponseFrame,
   );
   res.json(errorJsonld);
 });
@@ -77,7 +77,7 @@ app.use(async (err, req, res, next) => {
 function ensureValidContentType(contentType) {
   if (!/application\/(ld\+)?json/.test(contentType))
     throw new Error(
-      'Content-Type not valid, only application/json or application/ld+json are accepted'
+      'Content-Type not valid, only application/json or application/ld+json are accepted',
     );
 }
 
@@ -92,7 +92,7 @@ function ensureValidContentType(contentType) {
 function ensureMinimalLoginHeaders(req) {
   if (!req.get('Mu-Session-Id'))
     throw new Error(
-      'The required "mu-session-id" header could not be found. This is usually attached to the request by the mu-identifier.'
+      'The required "mu-session-id" header could not be found. This is usually attached to the request by the mu-identifier.',
     );
 }
 
@@ -124,7 +124,7 @@ function ensureMinimalLoginPayload(store) {
   const organizationExists = store.some(
     (quad) => quad,
     undefined,
-    ns.pav`createdBy`
+    ns.pav`createdBy`,
   );
   if (!organizationExists)
     throw new Error('The payload is missing an organization field');
@@ -132,7 +132,7 @@ function ensureMinimalLoginPayload(store) {
   const publisher = store.getObjects(undefined, ns.pav`providedBy`)[0];
   if (!publisher)
     throw new Error(
-      'The payload is missing a publisher object with URI and key'
+      'The payload is missing a publisher object with URI and key',
     );
 
   const key = store.getObjects(publisher, ns.muAccount`key`)[0];
