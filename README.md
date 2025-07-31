@@ -139,3 +139,7 @@ This model is based on the model described in the
 | `mu:uuid`           | `xsd:string`   | Mu identifier UUID.                                                     |
 | `dct:created`       | `xsd:dateTime` | Creation date of this session.                                          |
 | `muAccount:account` | unspecified    | The account for this session. Usually points to the vendor credentials. |
+
+### Environment Variables
+
+- `SESSION_CLEANUP_BATCH_SIZE`: when logging in or out, the existing sessions for the given session id are removed. In the case of login, this is done to purge existing lingering (possibly stale) sessions. This is done in batches. By default this is set to 150 sessions per batch.
