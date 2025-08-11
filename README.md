@@ -141,5 +141,9 @@ This model is based on the model described in the
 | `muAccount:account` | unspecified    | The account for this session. Usually points to the vendor credentials. |
 
 ### Environment Variables
+> [!Warning]
+> *Use the REMOVE_ALL_SESSIONS environment variables with great care!* These environment variables were added because the original service /claimed/ to clean up the existing sessions for an account on login, but because of a bug it didn't actually do that and the sessions persisted. Since no guarantees or constraints were put on this service, the vendors used this existing functionality to allow e.g. multiple instances of their service to log in. Activating this behavior would *BREAK their current integrations*
 
 - `SESSION_CLEANUP_BATCH_SIZE`: when logging in or out, the existing sessions for the given session id are removed. In the case of login, this is done to purge existing lingering (possibly stale) sessions. This is done in batches. By default this is set to 150 sessions per batch.
+- `REMOVE_ALL_SESSIONS_ON_LOGIN`: if set to `'true'` this removes all old sessions of the account when logging in. WARNING: this will break the flow of existing vendors (like Cevi). Disabled by default.
+- `REMOVE_ALL_SESSIONS_ON_LOGOUT`: if set to `'true'` this removes all old sessions of the account when logging out. WARNING: this may break the flow of existing users (like Cevi). Disabled by default.
