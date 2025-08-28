@@ -4,6 +4,7 @@
   "description": "Login microservice for a mu-semtech stack for vendors to get access to an RDF endpoint.",
   "dependencies": {
     "@lblod/mu-auth-sudo": "^0.6.0",
+    "argon2": "^0.44.0",
     "env-var": "^7.4.0",
     "jsonld": "^8.3.2",
     "n3": "^1.16.2",
