@@ -61,7 +61,9 @@ WHERE {
       .join("\n        ")}
   }
 }
-  `; // TODO: We might want to use proper escaping for the variables
+  `; 
+  // TODO: We might want to use proper escaping for the variables
+  // Would require mu package which is not trivial to use in a script.
 }
 
 async function main() {

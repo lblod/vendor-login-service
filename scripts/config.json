@@ -11,10 +11,7 @@
         "image": "semtech/mu-javascript-template:1.9.1",
         "interactive": false,
         "script": "vendor-api-key-hasher/run.sh",
-        "join_networks": true,
-        "mounts": {
-          "app": "/app"
-        }
+        "join_networks": true
       }
     }
   ]
