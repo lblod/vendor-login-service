@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import argon2 from "argon2";
+import argon2 from 'argon2';
 
-const SPARQL_ENDPOINT = process.env.SPARQL_ENDPOINT || "http://virtuoso:8890/sparql";
-const GRAPH_URI = "http://mu.semte.ch/graphs/automatic-submission";
+const SPARQL_ENDPOINT =
+  process.env.SPARQL_ENDPOINT || 'http://virtuoso:8890/sparql';
+const GRAPH_URI = 'http://mu.semte.ch/graphs/automatic-submission';
 
 async function getKeys() {
   const query = `
@@ -16,18 +17,18 @@ async function getKeys() {
   `;
 
   const response = await fetch(SPARQL_ENDPOINT, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/sparql-query",
-      "Accept": "application/sparql-results+json"
+      'Content-Type': 'application/sparql-query',
+      Accept: 'application/sparql-results+json',
     },
     body: query,
   });
 
   const data = await response.json();
-  return data.results.bindings.map(b => ({
+  return data.results.bindings.map((b) => ({
     subject: b.subject.value,
-    key: b.key.value
+    key: b.key.value,
   }));
 }
 
@@ -37,7 +38,7 @@ async function updateKeys(entries) {
       subject,
       key,
       hashed: await argon2.hash(key),
-    }))
+    })),
   );
   return `
 PREFIX muAccount: <http://mu.semte.ch/vocabularies/account/>
@@ -53,31 +54,32 @@ INSERT {
 }
 WHERE {
   VALUES (?subject ?key ?keyHash) {
-    ${entriesWithHash
-      .map(
-        ({ subject, key, hashed }) =>
-          `(<${subject}> "${key}" "${hashed}")`
-      )
-      .join("\n        ")}
+    ${entriesWithHash.map(({ subject, key, hashed }) => `(<${subject}> "${key}" "${hashed}")`).join('\n        ')}
   }
 }
-  `; 
+  `;
   // TODO: We might want to use proper escaping for the variables
   // Would require mu package which is not trivial to use in a script.
 }
 
 async function main() {
-  console.log("Fetching keys...");
+  console.log('Fetching keys...');
   const entries = await getKeys();
   const migrationString = await updateKeys(entries);
-  console.log("Migration content:");
-  console.log("==================");
+  console.log('Migration content:');
+  console.log('==================');
   console.log(migrationString);
-  console.log("==================================================================================");
-  console.log("> Copy the text above to a new migration file and restart the migration service. <");
-  console.log("==================================================================================");
+  console.log(
+    '==================================================================================',
+  );
+  console.log(
+    '> Copy the text above to a new migration file and restart the migration service. <',
+  );
+  console.log(
+    '==================================================================================',
+  );
 }
 
 main().catch((err) => {
-  console.error("Error:", err);
+  console.error('Error:', err);
 });
