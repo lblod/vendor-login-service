@@ -1,6 +1,6 @@
 {
   "name": "vendor-login-service",
-  "version": "0.0.1",
+  "version": "1.4.0",
   "description": "Login microservice for a mu-semtech stack for vendors to get access to an RDF endpoint.",
   "dependencies": {
     "@lblod/mu-auth-sudo": "^0.6.0",
