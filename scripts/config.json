@@ -1,0 +1,18 @@
+{
+  "version": "0.2",
+  "scripts": [
+    {
+      "documentation": {
+        "command": "hash-vendor-api-keys",
+        "description": "Outputs a migration query to hash all the vendor API keys in the triplestore",
+        "arguments": []
+      },
+      "environment": {
+        "image": "semtech/mu-javascript-template:1.9.1",
+        "interactive": false,
+        "script": "vendor-api-key-hasher/run.sh",
+        "join_networks": true
+      }
+    }
+  ]
+}
