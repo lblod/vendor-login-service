@@ -146,4 +146,4 @@ This model is based on the model described in the
 
 - `SESSION_CLEANUP_BATCH_SIZE`: when logging in or out, the existing sessions for the given session id are removed. In the case of login, this is done to purge existing lingering (possibly stale) sessions. This is done in batches. By default this is set to 150 sessions per batch.
 - `REMOVE_ALL_SESSIONS_ON_LOGIN`: if set to `'true'` this removes all old sessions of the account when logging in. WARNING: this will break the flow of existing vendors (like Cevi). Disabled by default.
-- `REMOVE_ALL_SESSIONS_ON_LOGOUT`: if set to `'true'` this removes all old sessions of the account when logging out. WARNING: this may break the flow of existing users (like Cevi). Disabled by default.
+- `REMOVE_ALL_SESSIONS_ON_LOGOUT`: if set to `'true'` this removes all old sessions of the account when logging out. WARNING: this may break the flow of existing users (like Cevi). Disabled by default.- `USE_HASHED_KEY`: : if set to `'true'`, the service will match the provided key against the hash stored in the DB. Disabled by default.
