@@ -43,6 +43,7 @@ end
   batching of subjects is used. Set this to a positive number smaller than ±500.
 - `USE_HASHED_KEY`: (default: `false`) If set to `true`, the service will match
   the provided key against the hash stored in the DB.
+- `SESSION_GRAPH`: when set to a graph URI (e.g. `http://mu.semte.ch/graphs/session`), new sessions are written to this fixed graph using `INSERT DATA`, decoupling session storage from where the vendor's `rdf:type` lives. When unset (default), sessions are written to whatever graph(s) contain the vendor's `rdf:type` (legacy behaviour). Logout and login-triggered session cleanup continue to scan all graphs (`GRAPH ?g`), so pre-existing sessions in vendor graphs are still removed.
 
 ### API
 
