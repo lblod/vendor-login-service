@@ -38,3 +38,4 @@ export const SESSION_CLEANUP_BATCH_SIZE = parseInt(
   process.env.SESSION_CLEANUP_BATCH_SIZE || '150',
 );
 export const USE_HASHED_KEY = process.env.USE_HASHED_KEY === 'true';
+export const SESSION_GRAPH = process.env.SESSION_GRAPH || '';
