@@ -30,10 +30,8 @@ export const SPARQL_PREFIXES = (() => {
   return all.join('\n');
 })();
 
-export const REMOVE_ALL_SESSIONS_ON_LOGIN =
-  process.env.REMOVE_ALL_SESSIONS_ON_LOGIN === 'true';
-export const REMOVE_ALL_SESSIONS_ON_LOGOUT =
-  process.env.REMOVE_ALL_SESSIONS_ON_LOGOUT === 'true';
+export const ONLY_ONE_SESSION_PER_ACCOUNT =
+  process.env.ONLY_ONE_SESSION_PER_ACCOUNT === 'true';
 export const SESSION_CLEANUP_BATCH_SIZE = parseInt(
   process.env.SESSION_CLEANUP_BATCH_SIZE || '150',
 );
