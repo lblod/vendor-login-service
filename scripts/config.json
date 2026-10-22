@@ -4,8 +4,8 @@
     {
       "documentation": {
         "command": "hash-vendor-api-keys",
-        "description": "Outputs a migration query to hash all the vendor API keys in the triplestore",
-        "arguments": []
+        "description": "Outputs a migration query to hash all the vendor API keys in the triplestore. Digs into GRAPH_URI (default http://mu.semte.ch/graphs/automatic-submission). SPARQL_ENDPOINT defaults to http://virtuoso:8890/sparql. Override via KEY=value arguments, e.g. mu script vendor-login hash-vendor-api-keys GRAPH_URI=http://mu.semte.ch/graphs/vendors/",
+        "arguments": ["GRAPH_URI", "SPARQL_ENDPOINT"]
       },
       "environment": {
         "image": "semtech/mu-javascript-template:1.9.1",

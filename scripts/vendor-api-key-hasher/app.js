@@ -4,7 +4,11 @@ import argon2 from 'argon2';
 
 const SPARQL_ENDPOINT =
   process.env.SPARQL_ENDPOINT || 'http://virtuoso:8890/sparql';
-const GRAPH_URI = 'http://mu.semte.ch/graphs/automatic-submission';
+// Override per stack, e.g. app-digitaal-loket stores the keys in the
+// automatic-submission graph, app-meldingsplictige-api in graphs/public and
+// graphs/vendors/...
+const GRAPH_URI =
+  process.env.GRAPH_URI || 'http://mu.semte.ch/graphs/automatic-submission';
 
 async function getKeys() {
   const query = `
